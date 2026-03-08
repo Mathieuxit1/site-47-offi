@@ -2,6 +2,7 @@ const terminal = document.getElementById("terminal")
 
 const lines = [
 
+"ASIA SYSTEM v4.2",
 "Initializing ASIA system...",
 "Loading security modules...",
 "Checking database connection...",
@@ -9,36 +10,56 @@ const lines = [
 "Loading SCP archives...",
 "Starting ASIA services...",
 "Security clearance verified",
-"System ready."
+"Access granted.",
+"Opening dashboard..."
 
 ]
 
-let i = 0
+let lineIndex = 0
+let charIndex = 0
 
-function printLine(){
+function typeLine(){
 
-if(i < lines.length){
+if(lineIndex >= lines.length){
 
-const p = document.createElement("p")
+setTimeout(()=>{
+window.location.href="/dashboard"
+},1500)
 
-p.textContent = lines[i]
+return
+
+}
+
+let currentLine = lines[lineIndex]
+
+let p = document.createElement("div")
+p.className="line"
 
 terminal.appendChild(p)
 
-i++
+function typeChar(){
 
-setTimeout(printLine,500)
+if(charIndex < currentLine.length){
+
+p.textContent += currentLine.charAt(charIndex)
+
+charIndex++
+
+setTimeout(typeChar,40)
 
 }else{
 
-setTimeout(()=>{
+lineIndex++
+charIndex=0
 
-window.location.href="/dashboard"
-
-},1500)
-
-}
+setTimeout(typeLine,300)
 
 }
 
-printLine()
+}
+
+typeChar()
+
+}
+
+typeLine()
