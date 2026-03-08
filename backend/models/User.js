@@ -2,27 +2,29 @@ const mongoose = require("mongoose")
 
 const UserSchema = new mongoose.Schema({
 
- username: {
-  type: String,
-  required: true,
-  unique: true
- },
+username:String,
 
- discord_id: String,
+password:String,
 
- role: String,
+role:{
+type:String,
+default:"scientist"
+},
 
- department: String,
+department:String,
 
- clearance: Number,
+clearance:{
+type:Number,
+default:1
+},
 
- password: String,
+discord_id:String,
 
- created_at: {
-  type: Date,
-  default: Date.now
- }
+created_at:{
+type:Date,
+default:Date.now
+}
 
 })
 
-module.exports = mongoose.model("User", UserSchema)
+module.exports = mongoose.model("User",UserSchema)

@@ -1,12 +1,13 @@
 const express = require("express")
 const router = express.Router()
+const checkRole = require("../middleware/permissions")
 
 const authMiddleware = require("../middleware/auth")
 const Document = require("../models/Document")
 const sendDiscordLog = require("../utils/discordLogger")
 
 // Voir les documents en attente
-router.get("/pending", authMiddleware, async (req, res) => {
+router.get("/pending", authMiddleware, checkRole("admin"), async (req, res) => {
 
  try {
 
