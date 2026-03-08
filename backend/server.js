@@ -3,10 +3,10 @@ const path = require("path")
 
 const app = express()
 
-// Import de la base de données
+// Import database
 require("./database")
 
-// Import des routes
+// Import routes
 const authRoutes = require("./routes/auth")
 const userRoutes = require("./routes/users")
 const documentRoutes = require("./routes/documents")
@@ -18,10 +18,11 @@ const statsRoutes = require("./routes/stats")
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// Dossier public
-app.use(express.static(path.join(__dirname, "../public")))
+// Static folders
+app.use(express.static("public"))
+app.use("/uploads", express.static("uploads"))
 
-// Routes API
+// API routes
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
 app.use("/api/documents", documentRoutes)
@@ -29,33 +30,35 @@ app.use("/api/admin", adminRoutes)
 app.use("/api/scp", scpRoutes)
 app.use("/api/stats", statsRoutes)
 
-// Pages frontend
+// Pages
+
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/login/index.html"))
-})
-
-app.get("/dashboard", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/dashboard/index.html"))
-})
-
-app.get("/test", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/dashboard/test.html"))
+ res.sendFile(path.join(__dirname, "../frontend/login/login.html"))
 })
 
 app.get("/login", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/login/login.html"))
+ res.sendFile(path.join(__dirname, "../frontend/login/login.html"))
 })
 
-// Gestion des erreurs 404
-app.use((req, res) => {
-    res.status(404).json({
-        error: "Page not found"
-    })
+app.get("/dashboard", (req, res) => {
+ res.sendFile(path.join(__dirname, "../frontend/dashboard/index.html"))
 })
 
-// Port du serveur
+app.get("/archives", (req, res) => {
+ res.sendFile(path.join(__dirname, "../frontend/archives/index.html"))
+})
+
+app.get("/scp", (req, res) => {
+ res.sendFile(path.join(__dirname, "../frontend/scp/index.html"))
+})
+
+app.get("/admin", (req, res) => {
+ res.sendFile(path.join(__dirname, "../frontend/admin/index.html"))
+})
+
+// Server start
 const PORT = process.env.PORT || 3000
 
 app.listen(PORT, () => {
-    console.log("ASIA DATABASE running on port " + PORT)
+ console.log("ASIA DATABASE running on port " + PORT)
 })
