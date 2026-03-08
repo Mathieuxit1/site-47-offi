@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Test création utilisateur</title>
+</head>
+
+<body>
+
+<h1>Créer un utilisateur</h1>
+
+<input id="username" placeholder="Username"><br><br>
+<input id="password" placeholder="Password"><br><br>
+<input id="role" placeholder="Role"><br><br>
+<input id="department" placeholder="Department"><br><br>
+<input id="clearance" placeholder="Clearance"><br><br>
+<input id="discord" placeholder="Discord ID"><br><br>
+
+<button onclick="createUser()">Créer</button>
+
+<script>
+
+async function createUser() {
+
+const res = await fetch("http://localhost:3000/api/users/create", {
+
+method: "POST",
+
+headers: {
+"Content-Type": "application/json"
+},
+
+body: JSON.stringify({
+
+username: document.getElementById("username").value,
+password: document.getElementById("password").value,
+role: document.getElementById("role").value,
+department: document.getElementById("department").value,
+clearance: document.getElementById("clearance").value,
+discord_id: document.getElementById("discord").value
+
+})
+
+})
+
+const data = await res.json()
+
+alert(JSON.stringify(data))
+
+}
+
+</script>
+
+</body>
+</html>

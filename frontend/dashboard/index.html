@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>ASIA DASHBOARD</title>
+
+<link rel="stylesheet" href="/css/dashboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="sidebar">
+
+<h2>ASIA</h2>
+
+<ul>
+
+<li onclick="go('/dashboard')">Dashboard</li>
+<li onclick="go('/archives')">Archives</li>
+<li onclick="go('/scp')">SCP Database</li>
+<li onclick="go('/admin')">Admin Panel</li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<h1>ASIA Dashboard</h1>
+
+<div class="stats">
+
+<div class="card">
+
+<h3>Documents</h3>
+<p id="documents">0</p>
+
+</div>
+
+<div class="card">
+
+<h3>Users</h3>
+<p id="users">0</p>
+
+</div>
+
+</div>
+
+<h2>System Activity</h2>
+
+<canvas id="statsChart"></canvas>
+
+</div>
+
+</div>
+
+<script src="/js/dashboard.js"></script>
+
+</body>
+
+</html>
