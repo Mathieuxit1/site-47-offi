@@ -4,19 +4,38 @@ window.location.href = page
 
 }
 
-async function loadStats(){
+async function initDashboard(){
 
-const res = await fetch("/api/stats")
+checkAuth()
+
+const token = localStorage.getItem("token")
+
+try{
+
+const res = await fetch("/api/stats",{
+
+headers:{
+Authorization:"Bearer "+token
+}
+
+})
+
 const data = await res.json()
 
 document.getElementById("documents").innerText = data.documents
 document.getElementById("users").innerText = data.users
 
-createChart(data)
+loadChart(data)
+
+}catch(err){
+
+console.error("Dashboard error",err)
 
 }
 
-function createChart(data){
+}
+
+function loadChart(data){
 
 const ctx = document.getElementById("statsChart")
 
@@ -30,26 +49,18 @@ labels:["Documents","Users"],
 
 datasets:[{
 
-label:"ASIA Database",
+label:"System Data",
 
-data:[data.documents,data.users],
-
-backgroundColor:["#00ff9c","#0099ff"]
+data:[data.documents,data.users]
 
 }]
 
 },
 
 options:{
-
-plugins:{
-legend:{display:false}
-}
-
+responsive:true
 }
 
 })
 
 }
-
-loadStats()

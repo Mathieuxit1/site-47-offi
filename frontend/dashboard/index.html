@@ -9,9 +9,11 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<script src="/js/auth.js"></script>
+
 </head>
 
-<body>
+<body onload="initDashboard()">
 
 <div class="container">
 
@@ -25,6 +27,7 @@
 <li onclick="go('/archives')">Archives</li>
 <li onclick="go('/scp')">SCP Database</li>
 <li onclick="go('/admin')">Admin Panel</li>
+<li onclick="logout()">Logout</li>
 
 </ul>
 

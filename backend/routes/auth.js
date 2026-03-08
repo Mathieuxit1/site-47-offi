@@ -39,7 +39,7 @@ router.post("/login", async (req, res) => {
             { expiresIn: "8h" }
         )
 
-        sendDiscordLog(`User logged in: ${user.username} (Role: ${user.role}, Clearance: ${user.clearance})`)
+        sendDiscordLog(`Un utilisateur s'est connecté: ${user.username} (Role: ${user.role}, Accréditation: ${user.clearance})`)
 
         res.json({
             message: "Login successful",
