@@ -56,6 +56,10 @@ app.get("/admin", (req, res) => {
  res.sendFile(path.join(__dirname, "../frontend/admin/index.html"))
 })
 
+app.get("/boot", (req, res) => {
+ res.sendFile(path.join(__dirname, "../frontend/boot/index.html"))
+})
+
 // Server start
 const PORT = process.env.PORT || 3000
 

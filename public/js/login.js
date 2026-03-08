@@ -23,7 +23,7 @@ if(data.token){
 
 localStorage.setItem("token",data.token)
 
-window.location.href="/dashboard"
+window.location.href="/boot"
 
 }else{
 
