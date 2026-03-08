@@ -1,13 +1,16 @@
 const mongoose = require("mongoose")
+const config = require("./config")
 
-mongoose.connect("mongodb+srv://asia_admin:adminasia10@cluster0.yp5kitq.mongodb.net/asia_database?retryWrites=true&w=majority")
+mongoose.connect(config.MONGO_URI)
 
-mongoose.connection.on("connected", () => {
-    console.log("MongoDB Atlas connected")
+.then(() => {
+
+ console.log("MongoDB Atlas connected")
+
 })
 
-mongoose.connection.on("error", (err) => {
-    console.log("MongoDB error:", err)
-})
+.catch((error) => {
 
-module.exports = mongoose
+ console.log("MongoDB connection error:", error)
+
+})
